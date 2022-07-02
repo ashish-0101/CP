@@ -1,0 +1,32 @@
+vector<int> sz(N);
+vector<int> parent(N);
+ 
+void make_set(int v)
+{
+      parent[v] = v;
+      sz[v] = 1;
+}
+ 
+int find_set(int u)
+{
+      if(parent[u] == u)
+            return u;
+      
+      return parent[u] = find_set(parent[u]);
+}
+ 
+ 
+void Union(int u, int v)
+{
+      int a = find_set(u);
+      int b = find_set(v);
+ 
+      if(a != b)
+      {
+            if(sz[a] < sz[b])
+                  swap(a, b);
+ 
+            parent[b] = a;
+            sz[a] += sz[b];
+      }
+}
